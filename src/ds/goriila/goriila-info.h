@@ -4,6 +4,7 @@
 #pragma once
 
 #include "src/device-info.h"
+#include "src/platform/uvc-device-info.h"
 #include <vector>
 #include <string>
 #include <memory>

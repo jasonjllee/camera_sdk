@@ -5,7 +5,6 @@
 #include "goriila-info.h"
 #include "src/core/matcher-factory.h"
 #include "src/uvc-sensor.h"
-
 #include "src/platform/command-transfer.h"
 #include "src/platform/uvc-option.h"
 
