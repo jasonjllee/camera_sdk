@@ -27,7 +27,6 @@ namespace librealsense
         auto backend = get_backend();
         if (!backend)
             throw std::runtime_error("Backend not available!");
-
         auto uvc_dev = backend->create_uvc_device(uvc_infos.front());
         if (!uvc_dev)
             throw std::runtime_error("Failed to create UVC device for goriila camera!");
@@ -45,6 +44,7 @@ namespace librealsense
         color_ep->register_option(RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE));
         color_ep->register_option(RS2_OPTION_EXPOSURE, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_EXPOSURE));
         color_ep->register_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_EXPOSURE));
+
 
         add_sensor(color_ep);
         _color_stream = color_ep->get_stream(RS2_STREAM_COLOR);
