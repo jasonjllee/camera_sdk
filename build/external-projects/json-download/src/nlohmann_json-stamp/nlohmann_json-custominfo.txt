@@ -1,0 +1,9 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=custom
+command=C:/Program Files/CMake/bin/cmake.exe;-E;remove_directory;D:/3D_SDK/camera_sdk/build/third-party/json;COMMAND;git;clone;-c;advice.detachedHead=false;--branch;v3.11.3;https://github.com/nlohmann/json.git;--depth;1;json
+source_dir=D:/3D_SDK/camera_sdk/build/external-projects/json-download/src/nlohmann_json
+work_dir=D:/3D_SDK/camera_sdk/build/third-party
+
