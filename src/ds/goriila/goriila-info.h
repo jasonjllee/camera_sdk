@@ -6,6 +6,7 @@
 #include "src/device-info.h"
 #include "src/platform/uvc-device-info.h"
 #include "src/platform/backend-device-group.h"
+
 #include <vector>
 #include <string>
 #include <memory>

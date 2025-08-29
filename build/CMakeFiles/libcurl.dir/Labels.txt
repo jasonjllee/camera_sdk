@@ -1,0 +1,14 @@
+# Target labels
+ libcurl
+# Source files and their labels
+D:/3D_SDK/camera_sdk/build/CMakeFiles/libcurl
+D:/3D_SDK/camera_sdk/build/CMakeFiles/a799652f8436f5339b66de6a5e9e0fe4/libcurl.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/526586993f08f31fbedd66424c231196/libcurl-complete.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-build.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-configure.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-download.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-install.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-mkdir.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-patch.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-test.rule
+D:/3D_SDK/camera_sdk/build/CMakeFiles/3ddcc1f82951161350caee997d19467d/libcurl-update.rule

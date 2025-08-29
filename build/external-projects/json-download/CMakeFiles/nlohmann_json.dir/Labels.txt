@@ -1,0 +1,13 @@
+# Target labels
+ nlohmann_json
+# Source files and their labels
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/nlohmann_json
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/374c732febd226f035d3d6256f774985/nlohmann_json.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/3f10f861b217c1b81ca87a07b2302fdc/nlohmann_json-complete.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-build.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-configure.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-download.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-install.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-mkdir.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-patch.rule
+D:/3D_SDK/camera_sdk/build/external-projects/json-download/CMakeFiles/7a98ab645865e323d31c5298f84452fc/nlohmann_json-update.rule
