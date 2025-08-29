@@ -5,15 +5,14 @@
 
 #include "src/device-info.h"
 #include "src/platform/uvc-device-info.h"
+#include "src/platform/backend-device-group.h"
+
 #include <vector>
 #include <string>
 #include <memory>
 
 namespace librealsense
 {
-    namespace platform {
-        struct backend_device_group;
-    }
     class context;
 
     namespace ds
@@ -30,10 +29,10 @@ namespace librealsense
         std::shared_ptr<device_interface> create_device() override;
 
         goriila_info(std::shared_ptr<context> ctx,
-                      std::vector<platform::uvc_device_info> uvc_devices)
-            : device_info(ctx, std::move(uvc_devices), {}, {}) {}
+                     std::vector<platform::uvc_device_info> uvc_devices)
+            : device_info(ctx, {std::move(uvc_devices), {}, {}}) {}
 
-        static std::vector<std::shared_ptr<goriila_info>> pick_goriila_devices(
+        static std::vector<std::shared_ptr<device_info>> pick_goriila_devices(
             std::shared_ptr<context> ctx,
             platform::backend_device_group& group);
     };

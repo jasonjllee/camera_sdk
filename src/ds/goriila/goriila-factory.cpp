@@ -16,12 +16,13 @@ namespace librealsense
         return std::make_shared<goriila_s01_device>(dev_info, true);
     }
 
-    std::vector<std::shared_ptr<goriila_info>> goriila_info::pick_goriila_devices(
+
+    std::vector<std::shared_ptr<device_info>> goriila_info::pick_goriila_devices(
         std::shared_ptr<context> ctx,
         platform::backend_device_group& group)
     {
         std::vector<platform::uvc_device_info> chosen;
-        std::vector<std::shared_ptr<goriila_info>> results;
+        std::vector<std::shared_ptr<device_info>> results;
 
         std::vector<platform::uvc_device_info> goriila_devices;
         for (const auto& uvc_info : group.uvc_devices)
