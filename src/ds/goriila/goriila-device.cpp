@@ -6,40 +6,48 @@
 #include "src/core/matcher-factory.h"
 #include "src/uvc-sensor.h"
 
+#include "src/platform/command-transfer.h"
+#include "src/platform/uvc-option.h"
+
 namespace librealsense
 {
     goriila_s01_device::goriila_s01_device(std::shared_ptr<const goriila_info> const & dev_info, bool register_device_notifications)
-        : backend_device(dev_info, register_device_notifications)
+        : device(dev_info, register_device_notifications),
+          backend_device(dev_info, register_device_notifications)
     {
         create_color_sensor();
     }
 
     void goriila_s01_device::create_color_sensor()
     {
-        auto uvc_dev = get_uvc_device();
+        auto uvc_infos = get_uvc_devices();
+        if (uvc_infos.empty())
+            throw std::runtime_error("No UVC device info found for goriila camera!");
+
+        auto backend = get_backend();
+        auto uvc_dev = backend->create_uvc_device(uvc_infos.front());
+        if (!uvc_dev)
+            throw std::runtime_error("Failed to create UVC device for goriila camera!");
+
         auto color_ep = std::make_shared<uvc_sensor>("Color Sensor", std::make_shared<platform::command_transfer_over_xu>(*uvc_dev, 0), this);
 
-        color_ep->register_option(RS2_OPTION_BRIGHTNESS, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_BRIGHTNESS));
-        color_ep->register_option(RS2_OPTION_CONTRAST, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_CONTRAST));
-        color_ep->register_option(RS2_OPTION_SATURATION, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_SATURATION));
-        color_ep->register_option(RS2_OPTION_GAMMA, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_GAMMA));
-        color_ep->register_option(RS2_OPTION_SHARPNESS, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_SHARPNESS));
-        color_ep->register_option(RS2_OPTION_BACKLIGHT_COMPENSATION, std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_BACKLIGHT_COMPENSATION));
+        color_ep->register_option(RS2_OPTION_BRIGHTNESS, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_BRIGHTNESS));
+        color_ep->register_option(RS2_OPTION_CONTRAST, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_CONTRAST));
+        color_ep->register_option(RS2_OPTION_SATURATION, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_SATURATION));
+        color_ep->register_option(RS2_OPTION_GAMMA, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_GAMMA));
+        color_ep->register_option(RS2_OPTION_SHARPNESS, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_SHARPNESS));
+        color_ep->register_option(RS2_OPTION_BACKLIGHT_COMPENSATION, std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_BACKLIGHT_COMPENSATION));
 
-        auto gain_option = std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_GAIN);
+        auto gain_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_GAIN);
         color_ep->register_option(RS2_OPTION_GAIN, gain_option);
 
-        auto white_balance_option = std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_WHITE_BALANCE);
-        auto auto_white_balance_option = std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE);
-
+        auto white_balance_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_WHITE_BALANCE);
+        auto auto_white_balance_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE);
         color_ep->register_option(RS2_OPTION_WHITE_BALANCE, white_balance_option);
         color_ep->register_option(RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE, auto_white_balance_option);
 
-        color_ep->register_option_supported(RS2_OPTION_WHITE_BALANCE, is_option_supported(RS2_OPTION_WHITE_BALANCE));
-        color_ep->register_option_supported(RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE, is_option_supported(RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE));
-
-        auto exposure_option = std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_EXPOSURE);
-        auto auto_exposure_option = std::make_shared<uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_EXPOSURE);
+        auto exposure_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_EXPOSURE);
+        auto auto_exposure_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_EXPOSURE);
 
         color_ep->register_option(RS2_OPTION_EXPOSURE, exposure_option);
         color_ep->register_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, auto_exposure_option);

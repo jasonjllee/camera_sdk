@@ -11,7 +11,7 @@ namespace librealsense
 {
     class goriila_info;
 
-    class goriila_s01_device : public backend_device
+    class goriila_s01_device : public virtual backend_device
     {
     public:
         goriila_s01_device(std::shared_ptr<const goriila_info> const & dev_info, bool register_device_notifications);
