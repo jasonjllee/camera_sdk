@@ -9,8 +9,7 @@
 namespace librealsense
 {
     goriila_s01_device::goriila_s01_device(std::shared_ptr<const goriila_info> const & dev_info, bool register_device_notifications)
-        : device(dev_info, register_device_notifications),
-          backend_device(dev_info, register_device_notifications)
+        : backend_device(dev_info, register_device_notifications)
     {
         create_color_sensor();
     }
