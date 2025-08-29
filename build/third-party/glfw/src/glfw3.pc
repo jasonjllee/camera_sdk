@@ -1,0 +1,13 @@
+prefix=D:/3D_SDK/camera_sdk/build/release
+exec_prefix=${prefix}
+includedir=D:/3D_SDK/camera_sdk/build/release/include
+libdir=D:/3D_SDK/camera_sdk/build/release/lib
+
+Name: GLFW
+Description: A multi-platform library for OpenGL, window and input
+Version: 3.3.0
+URL: https://www.glfw.org/
+Requires.private: 
+Libs: -L${libdir} -lglfw3
+Libs.private:  -lgdi32
+Cflags: -I${includedir}
