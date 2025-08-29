@@ -5,6 +5,7 @@
 #include "goriila-info.h"
 #include "src/core/matcher-factory.h"
 #include "src/uvc-sensor.h"
+
 #include "src/platform/command-transfer.h"
 #include "src/platform/uvc-option.h"
 
@@ -42,7 +43,6 @@ namespace librealsense
 
         auto white_balance_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_WHITE_BALANCE);
         auto auto_white_balance_option = std::make_shared<platform::uvc_pu_option>(*color_ep, RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE);
-
         color_ep->register_option(RS2_OPTION_WHITE_BALANCE, white_balance_option);
         color_ep->register_option(RS2_OPTION_ENABLE_AUTO_WHITE_BALANCE, auto_white_balance_option);
 
