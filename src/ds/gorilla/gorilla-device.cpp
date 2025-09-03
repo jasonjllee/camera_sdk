@@ -9,7 +9,20 @@ namespace librealsense
     gorilla_s01_device::gorilla_s01_device(std::shared_ptr<const gorilla_info> const& dev_info)
         : device(dev_info, true), backend_device(dev_info)
     {
-        // ... constructor logic ...
+        init();
+    }
+
+    void gorilla_s01_device::init()
+    {
+        _pid = get_device_info().get_group().uvc_devices.front().pid;
+
+        std::string device_name = (ds::gorilla_sku_names.end() != ds::gorilla_sku_names.find(_pid)) ? ds::gorilla_sku_names.at(_pid) : "GORILLA";
+
+        register_info(RS2_CAMERA_INFO_NAME, device_name);
+        register_info(RS2_CAMERA_INFO_SERIAL_NUMBER, "000000000001");
+        register_info(RS2_CAMERA_INFO_FIRMWARE_VERSION, "1.0.0.0");
+        register_info(RS2_CAMERA_INFO_PRODUCT_ID, std::to_string(_pid));
+        register_info(RS2_CAMERA_INFO_PRODUCT_LINE, "GORILLA");
     }
 
     std::vector<tagged_profile> gorilla_s01_device::get_profiles_tags() const
