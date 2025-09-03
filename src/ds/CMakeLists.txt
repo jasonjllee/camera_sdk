@@ -3,6 +3,7 @@
 
 include(${_rel_path}/ds/d400/CMakeLists.txt)
 include(${_rel_path}/ds/d500/CMakeLists.txt)
+include(${_rel_path}/ds/gorilla/CMakeLists.txt)
 
 target_sources(${LRS_TARGET}
     PRIVATE
