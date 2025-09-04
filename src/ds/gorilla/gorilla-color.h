@@ -10,7 +10,7 @@
 
 namespace librealsense
 {
-    class gorilla_color : public virtual gorilla_base_device
+    class gorilla_color : public virtual gorilla_device
     {
     public:
         gorilla_color(std::shared_ptr<const gorilla_info> const &);

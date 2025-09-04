@@ -1,18 +1,18 @@
 // License: Apache 2.0. See LICENSE file in root directory.
 // Copyright(c) 2024 Intel Corporation. All Rights Reserved.
 
-#include "gorilla-base.h"
+#include "gorilla-device.h"
 #include "core/matcher-factory.h"
 
 namespace librealsense
 {
-    gorilla_base_device::gorilla_base_device(std::shared_ptr<const gorilla_info> const& dev_info)
+    gorilla_device::gorilla_device(std::shared_ptr<const gorilla_info> const& dev_info)
         : device(dev_info, true), backend_device(dev_info), _gorilla_info(dev_info)
     {
         init(dev_info->get_context(), dev_info->get_group());
     }
 
-    void gorilla_base_device::init(std::shared_ptr<context> ctx, const platform::backend_device_group& group)
+    void gorilla_device::init(std::shared_ptr<context> ctx, const platform::backend_device_group& group)
     {
         auto& info = group.uvc_devices.front();
         _pid = info.pid;
@@ -27,7 +27,7 @@ namespace librealsense
         register_info(RS2_CAMERA_INFO_PHYSICAL_PORT, info.device_path);
     }
 
-    std::vector<tagged_profile> gorilla_base_device::get_profiles_tags() const
+    std::vector<tagged_profile> gorilla_device::get_profiles_tags() const
     {
         std::vector<tagged_profile> tags;
         // The user mentioned RGB MJPG, IR, and Depth. I'll add some placeholder profiles.
@@ -37,7 +37,7 @@ namespace librealsense
         return tags;
     }
 
-    std::shared_ptr<matcher> gorilla_base_device::create_matcher(const frame_holder& frame) const
+    std::shared_ptr<matcher> gorilla_device::create_matcher(const frame_holder& frame) const
     {
         // For now, returning a default matcher.
         // This will need to be updated with the actual streams.

@@ -10,11 +10,11 @@
 
 namespace librealsense
 {
-    class gorilla_base_device : public virtual device,
+    class gorilla_device : public virtual device,
                                public virtual backend_device
     {
     public:
-        gorilla_base_device(std::shared_ptr<const gorilla_info> const& dev_info);
+        gorilla_device(std::shared_ptr<const gorilla_info> const& dev_info);
 
         std::vector<tagged_profile> get_profiles_tags() const override;
 

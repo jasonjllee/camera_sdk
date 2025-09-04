@@ -8,7 +8,7 @@ namespace librealsense
     gorilla_s01_device::gorilla_s01_device(std::shared_ptr<const gorilla_info> const& dev_info)
         : device(dev_info, true),
           backend_device(dev_info),
-          gorilla_base_device(dev_info),
+          gorilla_device(dev_info),
           gorilla_color(dev_info)
     {
     }
