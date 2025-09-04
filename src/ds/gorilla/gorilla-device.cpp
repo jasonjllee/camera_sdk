@@ -6,13 +6,13 @@
 
 namespace librealsense
 {
-    gorilla_s01_device::gorilla_s01_device(std::shared_ptr<const gorilla_info> const& dev_info)
+    gorilla_device::gorilla_device(std::shared_ptr<const gorilla_info> const& dev_info)
         : device(dev_info, true), backend_device(dev_info), _gorilla_info(dev_info)
     {
         init(dev_info->get_context(), dev_info->get_group());
     }
 
-    void gorilla_s01_device::init(std::shared_ptr<context> ctx, const platform::backend_device_group& group)
+    void gorilla_device::init(std::shared_ptr<context> ctx, const platform::backend_device_group& group)
     {
         _pid = group.uvc_devices.front().pid;
 
@@ -26,7 +26,7 @@ namespace librealsense
 
     }
 
-    std::vector<tagged_profile> gorilla_s01_device::get_profiles_tags() const
+    std::vector<tagged_profile> gorilla_device::get_profiles_tags() const
     {
         std::vector<tagged_profile> tags;
         // The user mentioned RGB MJPG, IR, and Depth. I'll add some placeholder profiles.
@@ -36,7 +36,7 @@ namespace librealsense
         return tags;
     }
 
-    std::shared_ptr<matcher> gorilla_s01_device::create_matcher(const frame_holder& frame) const
+    std::shared_ptr<matcher> gorilla_device::create_matcher(const frame_holder& frame) const
     {
         // For now, returning a default matcher.
         // This will need to be updated with the actual streams.
