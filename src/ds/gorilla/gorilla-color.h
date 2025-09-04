@@ -25,8 +25,7 @@ namespace librealsense
         void create_color_device(std::shared_ptr<context> ctx, const platform::backend_device_group& group);
         uint8_t _color_device_idx = -1;
 
-    friend class gorilla_color_sensor;
-        friend class d400_color_sensor;
+        friend class gorilla_color_sensor;
         friend class ds_color_common;
     };
 
