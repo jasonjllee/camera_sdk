@@ -16,10 +16,10 @@
 //                                     These parameters are reconfigurable                                        //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define STREAM          RS2_STREAM_COLOR  // Type of data provided by RealSense device                            //
-#define FORMAT          RS2_FORMAT_ANY    // How binary data is encoded within a frame (ANY)                      //
-#define WIDTH           0                 // Number of columns for each frame (ANY)                               //
-#define HEIGHT          0                 // Number of lines for each frame (ANY)                                 //
-#define FPS             0                 // Rate of frames per second (ANY)                                      //
+#define FORMAT          RS2_FORMAT_MJPEG    // How binary data is encoded within a frame (ANY)                      //
+#define WIDTH           1920                 // Number of columns for each frame (ANY)                               //
+#define HEIGHT          1080                 // Number of lines for each frame (ANY)                                 //
+#define FPS             30                 // Rate of frames per second (ANY)                                      //
 #define STREAM_INDEX    -1                // Used for multiple streams of the same type (ANY)                     //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
