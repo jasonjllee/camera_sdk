@@ -13,7 +13,7 @@ namespace librealsense
 
     namespace ds
     {
-        const uint16_t GORILLA_S01_PID = 0x0c01;
+        const uint16_t GORILLA_S01_PID = 0xa100;
 
         // Gorilla Devices supported by the current version
         static const std::set<std::uint16_t> gorilla_sku_pid = {

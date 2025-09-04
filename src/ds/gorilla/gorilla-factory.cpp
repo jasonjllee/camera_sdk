@@ -1,9 +1,9 @@
 // License: Apache 2.0. See LICENSE file in root directory.
 // Copyright(c) 2024 Intel Corporation. All Rights Reserved.
 
-#include "ds/gorilla/gorilla-info.h"
-#include "ds/gorilla/gorilla-private.h"
-#include "ds/gorilla/gorilla-s01-device.h"
+#include "gorilla-info.h"
+#include "gorilla-private.h"
+#include "gorilla-s01-device.h"
 #include "context.h"
 #include "platform/platform-utils.h"
 #include <rsutils/string/from.h>

@@ -10,6 +10,8 @@
 
 namespace librealsense
 {
+    class gorilla_color_sensor;
+
     class gorilla_color : public virtual gorilla_device
     {
     public:
@@ -22,6 +24,7 @@ namespace librealsense
         std::shared_ptr<stream_interface> _color_stream;
 
     private:
+        friend class gorilla_color_sensor;
         void create_color_device(std::shared_ptr<context> ctx, const platform::backend_device_group& group);
         uint8_t _color_device_idx = -1;
     };
@@ -36,5 +39,8 @@ namespace librealsense
             std::map<uint32_t, rs2_stream> fourcc_to_rs2_stream);
 
         stream_profiles init_stream_profiles() override;
+
+    protected:
+        const gorilla_color* _owner;
     };
 }

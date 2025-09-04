@@ -3,16 +3,26 @@
 
 #include "gorilla-color.h"
 #include "gorilla-info.h"
-#include "d400-color.h" // For fourcc maps
 #include <src/backend.h>
+#include <src/ds/ds-timestamp.h>
 #include <src/platform/platform-utils.h>
 #include <rsutils/string/from.h>
+#include <rsutils/type/fourcc.h>
+using rs_fourcc = rsutils::type::fourcc;
 
 namespace librealsense
 {
+    std::map<rs_fourcc::value_type, rs2_format> gorilla_color_fourcc_to_rs2_format = {
+        {rs_fourcc('M','J','P','G'), RS2_FORMAT_MJPEG},
+        {rs_fourcc('Y','U','Y','V'), RS2_FORMAT_YUYV},
+    };
+    std::map<rs_fourcc::value_type, rs2_stream> gorilla_color_fourcc_to_rs2_stream = {
+        {rs_fourcc('M','J','P','G'), RS2_STREAM_COLOR},
+        {rs_fourcc('Y','U','Y','V'), RS2_STREAM_COLOR},
+    };
+
     gorilla_color::gorilla_color(std::shared_ptr<const gorilla_info> const & dev_info)
-        : gorilla_base_device(dev_info), device(dev_info),
-          _color_stream(new stream(RS2_STREAM_COLOR))
+        : _color_stream(new stream(RS2_STREAM_COLOR))
     {
         create_color_device(dev_info->get_context(), dev_info->get_group());
     }
@@ -32,8 +42,8 @@ namespace librealsense
 
         auto color_ep = std::make_shared<gorilla_color_sensor>(this,
             raw_color_ep,
-            d400_color_fourcc_to_rs2_format, // Re-using D400 format map for now
-            d400_color_fourcc_to_rs2_stream);
+            gorilla_color_fourcc_to_rs2_format,
+            gorilla_color_fourcc_to_rs2_stream);
 
         color_ep->register_info(RS2_CAMERA_INFO_PHYSICAL_PORT, color_devs_info.front().device_path);
         _color_device_idx = add_sensor(color_ep);
@@ -50,12 +60,12 @@ namespace librealsense
         return std::dynamic_pointer_cast<uvc_sensor>(color_sensor.get_raw_sensor());
     }
 
-    // gorilla_color_sensor implementation
     gorilla_color_sensor::gorilla_color_sensor(gorilla_color* owner,
         std::shared_ptr<uvc_sensor> uvc_sensor,
         std::map<uint32_t, rs2_format> fourcc_to_rs2_format,
         std::map<uint32_t, rs2_stream> fourcc_to_rs2_stream)
-        : synthetic_sensor("RGB Camera", uvc_sensor, owner, fourcc_to_rs2_format, fourcc_to_rs2_stream)
+        : synthetic_sensor("RGB Camera", uvc_sensor, owner, fourcc_to_rs2_format, fourcc_to_rs2_stream),
+          _owner(owner)
     {}
 
     stream_profiles gorilla_color_sensor::init_stream_profiles()
@@ -67,9 +77,7 @@ namespace librealsense
         {
             if (p->get_stream_type() == RS2_STREAM_COLOR)
             {
-                // The owner of the sensor is gorilla_color, which is a device.
-                auto owner = dynamic_cast<gorilla_color*>(_owner);
-                assign_stream(owner->_color_stream, p);
+                assign_stream(_owner->_color_stream, p);
             }
         }
         return results;

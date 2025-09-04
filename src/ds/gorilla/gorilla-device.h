@@ -4,14 +4,15 @@
 
 #include "src/device.h"
 #include "src/backend-device.h"
-#include "ds/gorilla/gorilla-info.h"
-#include "ds/gorilla/gorilla-private.h"
+#include "gorilla-info.h"
 #include <vector>
+
+#include "gorilla-private.h"
 
 namespace librealsense
 {
     class gorilla_device : public virtual device,
-                               public virtual backend_device
+                           public virtual backend_device
     {
     public:
         gorilla_device(std::shared_ptr<const gorilla_info> const& dev_info);
