@@ -209,8 +209,6 @@ backend_device_factory::create_devices_from_group( platform::backend_device_grou
             std::copy( begin( d500_devices ), end( d500_devices ), std::back_inserter( list ) );
         }
 
-
-
         if( mask & RS2_PRODUCT_LINE_GORILLA )
         {
             auto gorilla_devices = gorilla_info::pick_gorilla_devices( ctx, devices );
