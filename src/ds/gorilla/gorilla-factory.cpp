@@ -3,7 +3,7 @@
 
 #include "ds/gorilla/gorilla-info.h"
 #include "ds/gorilla/gorilla-private.h"
-#include "ds/gorilla/gorilla-device.h"
+#include "ds/gorilla/gorilla-s01-device.h"
 #include "context.h"
 #include "platform/platform-utils.h"
 #include <rsutils/string/from.h>
