@@ -14,8 +14,7 @@ namespace librealsense
 
     void gorilla_s01_device::init()
     {
-        auto& info = _gorilla_info->get_group().uvc_devices.front();
-        _pid = info.pid;
+        _pid = _gorilla_info->get_group().uvc_devices.front().pid;
 
         std::string device_name = (ds::gorilla_sku_names.end() != ds::gorilla_sku_names.find(_pid)) ? ds::gorilla_sku_names.at(_pid) : "GORILLA";
 
@@ -23,9 +22,7 @@ namespace librealsense
         register_info(RS2_CAMERA_INFO_SERIAL_NUMBER, "000000000001");
         register_info(RS2_CAMERA_INFO_FIRMWARE_VERSION, "1.0.0.0");
         register_info(RS2_CAMERA_INFO_PRODUCT_ID, std::to_string(_pid));
-        register_info(RS2_CAMERA_INFO_PRODUCT_LINE, "gorilla");
-        register_info(RS2_CAMERA_INFO_PHYSICAL_PORT, info.device_path);
-
+        register_info(RS2_CAMERA_INFO_PRODUCT_LINE, "GORILLA");
     }
 
     std::vector<tagged_profile> gorilla_s01_device::get_profiles_tags() const

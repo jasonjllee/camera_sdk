@@ -4,8 +4,8 @@
 
 #include "src/device.h"
 #include "src/backend-device.h"
-#include "ds/gorilla/gorilla-info.h"
-#include "ds/gorilla/gorilla-private.h"
+#include "ds/Gorilla/gorilla-info.h"
+#include "ds/Gorilla/gorilla-private.h"
 #include <vector>
 
 namespace librealsense
