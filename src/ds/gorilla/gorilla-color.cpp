@@ -28,7 +28,7 @@ namespace librealsense
     };
 
     gorilla_color::gorilla_color(std::shared_ptr<const gorilla_info> const & dev_info)
-        : gorilla_device(dev_info), device(dev_info),
+        : device(dev_info), backend_device(dev_info), gorilla_device(dev_info),
           _color_stream(new stream(RS2_STREAM_COLOR))
     {
         create_color_device(dev_info->get_context(), dev_info->get_group());
