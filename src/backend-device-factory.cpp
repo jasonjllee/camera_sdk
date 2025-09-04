@@ -10,7 +10,7 @@
 #include "backend-device.h"
 #include "ds/d400/d400-info.h"
 #include "ds/d500/d500-info.h"
-#include "ds/goriila/goriila-info.h"
+#include "ds/gorilla/gorilla-info.h"
 #include "fw-update/fw-update-factory.h"
 #include "platform-camera.h"
 
@@ -209,10 +209,10 @@ backend_device_factory::create_devices_from_group( platform::backend_device_grou
             std::copy( begin( d500_devices ), end( d500_devices ), std::back_inserter( list ) );
         }
 
-        if( mask & RS2_PRODUCT_LINE_GORIILA )
+        if( mask & RS2_PRODUCT_LINE_GORILLA )
         {
-            auto goriila_devices = goriila_info::pick_goriila_devices( ctx, devices );
-            std::copy( begin( goriila_devices ), end( goriila_devices ), std::back_inserter( list ) );
+            auto gorilla_devices = gorilla_info::pick_gorilla_devices( ctx, devices );
+            std::copy( begin( gorilla_devices ), end( gorilla_devices ), std::back_inserter( list ) );
         }
 
         // Supported recovery devices
