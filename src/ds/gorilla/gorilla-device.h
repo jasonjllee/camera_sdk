@@ -4,9 +4,10 @@
 
 #include "src/device.h"
 #include "src/backend-device.h"
-#include "ds/gorilla/gorilla-info.h"
-#include "ds/gorilla/gorilla-private.h"
+#include "gorilla-info.h"
 #include <vector>
+
+#include "gorilla-private.h"
 
 namespace librealsense
 {
@@ -19,9 +20,10 @@ namespace librealsense
         std::vector<tagged_profile> get_profiles_tags() const override;
 
         std::shared_ptr<matcher> create_matcher(const frame_holder& frame) const override;
+    protected:
+        void init(std::shared_ptr<context> ctx, const platform::backend_device_group& group);
 
     private:
-        void init();
 
         uint16_t _pid;
         std::shared_ptr<const gorilla_info> _gorilla_info;
