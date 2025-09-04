@@ -14,8 +14,7 @@ namespace librealsense
 
     void gorilla_s01_device::init(std::shared_ptr<context> ctx, const platform::backend_device_group& group)
     {
-        auto& info = group.uvc_devices.front();
-        _pid = info.pid;
+        _pid = group.uvc_devices.front().pid;
 
         std::string device_name = (ds::gorilla_sku_names.end() != ds::gorilla_sku_names.find(_pid)) ? ds::gorilla_sku_names.at(_pid) : "GORILLA";
 
@@ -24,7 +23,7 @@ namespace librealsense
         register_info(RS2_CAMERA_INFO_FIRMWARE_VERSION, "1.0.0.0");
         register_info(RS2_CAMERA_INFO_PRODUCT_ID, std::to_string(_pid));
         register_info(RS2_CAMERA_INFO_PRODUCT_LINE, "gorilla");
-        register_info(RS2_CAMERA_INFO_PHYSICAL_PORT, info.device_path);
+
     }
 
     std::vector<tagged_profile> gorilla_s01_device::get_profiles_tags() const
@@ -33,7 +32,7 @@ namespace librealsense
         // The user mentioned RGB MJPG, IR, and Depth. I'll add some placeholder profiles.
         tags.push_back({ RS2_STREAM_DEPTH, -1, 640, 480, RS2_FORMAT_Z16, 30, profile_tag::PROFILE_TAG_DEFAULT });
         tags.push_back({ RS2_STREAM_INFRARED, 1, 640, 480, RS2_FORMAT_Y8, 30, profile_tag::PROFILE_TAG_DEFAULT });
-        tags.push_back({ RS2_STREAM_COLOR, -1, 640, 480, RS2_FORMAT_MJPEG, 30, profile_tag::PROFILE_TAG_DEFAULT });
+        tags.push_back({ RS2_STREAM_COLOR, -1, 1920, 1080, RS2_FORMAT_MJPEG, 30, profile_tag::PROFILE_TAG_DEFAULT });
         return tags;
     }
 
