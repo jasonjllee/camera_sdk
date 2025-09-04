@@ -4,6 +4,7 @@
 #include "gorilla-info.h"
 #include "gorilla-private.h"
 #include "gorilla-device.h"
+#include "gorilla-s01-device.h"
 #include "context.h"
 #include "platform/platform-utils.h"
 #include <rsutils/string/from.h>

@@ -7,7 +7,7 @@
 namespace librealsense
 {
     gorilla_device::gorilla_device(std::shared_ptr<const gorilla_info> const& dev_info)
-        : device(dev_info, true), backend_device(dev_info), _gorilla_info(dev_info)
+        : backend_device(dev_info), _gorilla_info(dev_info)
     {
         init(dev_info->get_context(), dev_info->get_group());
     }
